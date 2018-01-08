@@ -1,8 +1,10 @@
 <template>
+
   <div>
     <p>Vous êtes connecté</p>
-    <button @click="seDeconnecter">out</button>
+    <button @click="seDeconnecter">Se deconnecter</button>
   </div>
+
 </template>
 
 <script>
@@ -14,19 +16,9 @@ export default {
 	},
 	methods:{
     seDeconnecter(){
-      window.axios.delete('members/signout').then((response) => {
-
-        this.$store.commit('setMember', false);
-        this.$store.commit('setToken', false);
-
-        alert('Vous êtes déconnecté');
-        this.$router.push({path: '/Connexion'});
-
-      }).catch ((error) => {
-        alert(error.response.data.error.join(""));
-
-      })
-
+        // On fait un emit car c'est une fonction qu'on aura besoin un peu partout
+        // window.bus instancier dans main 
+        window.bus.$emit('logout');
     }
   }
 }

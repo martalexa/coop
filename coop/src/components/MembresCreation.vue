@@ -44,7 +44,7 @@ export default {
 				this.$router.push({path: '/Connexion'});
 
 			}).catch ((error) => {
-				alert(error.response.data.error.join(""));
+				console.log(error.response.data.join(""));
 			})
 		}
   	}

@@ -22,8 +22,8 @@ export default {
   name: 'Connexion',
   data () {
     return {
-		password : 'test',
-		email : 'test@test.org'
+		password : 'aa',
+		email : 'aa@aa.aa'
     }
   },
 	methods:{

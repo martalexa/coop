@@ -12,9 +12,18 @@ export default {
   name: 'app',
   components : {MembresCreation, Connexion},
   mounted(){
-  	if( !this.$store.state.member ){  //Si connecté 
-		this.$router.push({path: '/connexion'});
-	}
+
+  	if( !this.$store.state.member ){  //Si connecté
+		  this.$router.push({path: '/connexion'});
+	   }
+    window.bus.$on('logout',() =>{
+
+      window.axios.delete('members/signout'),
+      this.$store.commit('setMember', false);
+      this.$store.commit('setToken', false);
+      this.$router.push({path: '/connexion'});
+
+    })
   }
 }
 </script>
