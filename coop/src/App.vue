@@ -12,10 +12,7 @@ export default {
   name: 'app',
   components : {MembresCreation, Connexion},
   mounted(){
-  	if( this.$store.state.member ){  //Si connecté 
-		alert("vous etes connecté coool");
-	}
-	else{
+  	if( !this.$store.state.member ){  //Si connecté 
 		this.$router.push({path: '/connexion'});
 	}
   }

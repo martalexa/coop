@@ -11,7 +11,7 @@ window.axios = axios.create({
   params : {
   	token : store.state.token
   },
-  headers: { Authorization: 'Token token=a13812eaefda485593e652d4ef828593' }
+  headers: { Authorization: 'Token token=27ea72cecd104e96a5732d67151f836a' }
 });
 Vue.config.productionTip = false
 

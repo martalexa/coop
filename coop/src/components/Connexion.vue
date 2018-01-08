@@ -22,8 +22,8 @@ export default {
   name: 'Connexion',
   data () {
     return {
-		password : '',
-		email : ''
+		password : 'test',
+		email : 'test@test.org'
     }
   },
 	methods:{
@@ -34,9 +34,11 @@ export default {
 					password : this.password,
 
 				}).then((response) => {
-					this.$store.commit('setMember', response.data.member);
+					this.$store.commit('setMember', response.data);
 					this.$store.commit('setToken', response.data.token);
 
+					window.axios.defaults.params.token = response.data.token;
+					console.log(window.axios.defaults.params)
 					alert('Vous êtes connecté');
 					this.$router.push({path: '/conversationsListe'});;
 
