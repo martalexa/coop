@@ -1,10 +1,10 @@
 <template>
 	<form @submit="seConnecter">
-		
+
 		<div>
 			<input type="email" v-model="email" placeholder="email"/>
 		</div>
-		
+
 		<div>
 			<input type="password" v-model="password" placeholder="password"/>
 		</div>
@@ -23,7 +23,7 @@ export default {
   data () {
     return {
 		password : '',
-		email : '' 
+		email : ''
     }
   },
 	methods:{
@@ -36,14 +36,14 @@ export default {
 				}).then((response) => {
 					this.$store.commit('setMember', response.data.member);
 					this.$store.commit('setToken', response.data.token);
-					
+
 					//this.$router.push({'/'}); // Redirection
 					alert('Vous etes connecté');
-					
+
 				}).catch ((error) => {
 					console.log(error.response.data.error.join(""));
 				})
-			}	
+			}
   	}
 }
 
