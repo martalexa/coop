@@ -1,5 +1,5 @@
 <template>
-  <button @click="seDeconnecter">Se deconnecter</button>
+  <p>Vous êtes connecté</p>
 </template>
 
 <script>
@@ -10,20 +10,8 @@ export default {
     }
 	},
 	methods:{
-		  seDeconnecter(){
-        window.axios.post('members/signout?token="$this.store"',{}).then((response) => {
-
-          alert(reponse.data.fullname);
-
-        }).catch ((error) => {
-          alert(error.response.data.error.join(""));
-        })
-
-
-      }
-		}
+  }
 }
-
 </script>
 
 

@@ -3,11 +3,11 @@
 		<div>
 			<input type="text" v-model="fullname" placeholder="fullname"/>
 		</div>
-		
+
 		<div>
 			<input type="email" v-model="email" placeholder="email"/>
 		</div>
-		
+
 		<div>
 			<input type="password" v-model="password" placeholder="password"/>
 		</div>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import ConversationsListe from '@/components/ConversationsListe'
+
 export default {
   name: 'MembresCreation',
   data () {
@@ -37,9 +39,10 @@ export default {
 				password : this.password,
 
 			}).then((response) => {
-			
-				alert(reponse.data.fullname);
-			
+
+				alert('Votre compte à été créé');
+				this.$router.push({path: '/Connexion'});
+
 			}).catch ((error) => {
 				alert(error.response.data.error.join(""));
 			})

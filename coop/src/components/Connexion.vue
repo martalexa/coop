@@ -37,8 +37,8 @@ export default {
 					this.$store.commit('setMember', response.data.member);
 					this.$store.commit('setToken', response.data.token);
 
-					//this.$router.push({'/'}); // Redirection
-					alert('Vous etes connecté');
+					alert('Vous êtes connecté');
+					this.$router.push({path: '/conversationsListe'});;
 
 				}).catch ((error) => {
 					console.log(error.response.data.error.join(""));
