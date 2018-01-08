@@ -13,10 +13,12 @@ export default {
   components : {MembresCreation, Connexion},
   mounted(){
 
-  	if( !this.$store.state.member ){  //Si connecté
+  	if( !this.$store.state.member ){  //Si pas connecté
 		  this.$router.push({path: '/connexion'});
-	   }
-    window.bus.$on('logout',() =>{
+	   } else {
+     this.$router.push({path: '/conversationsListe'});
+     }
+     window.bus.$on('logout',() =>{
 
       window.axios.delete('members/signout'),
       this.$store.commit('setMember', false);

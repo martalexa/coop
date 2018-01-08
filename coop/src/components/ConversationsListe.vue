@@ -1,25 +1,30 @@
 <template>
-
   <div>
-    <p>Vous êtes connecté</p>
-    <button @click="seDeconnecter">Se deconnecter</button>
+    <nav-bar/>
+    <div>
+      <p>Liste des conversations</p>
+      <button @click="creationSujet">Créer une conversation</button>
+    </div>
   </div>
 
 </template>
 
 <script>
+import NavBar from '@/components/NavBar'
+
 export default {
   name: 'ConversationsListe',
+  components :{NavBar},
   data () {
     return {
     }
 	},
 	methods:{
-    seDeconnecter(){
-        // On fait un emit car c'est une fonction qu'on aura besoin un peu partout
-        // window.bus instancier dans main 
-        window.bus.$emit('logout');
+    creationSujet(){
+      this.$router.push({path: '/SujetCreation'});
+
     }
+
   }
 }
 </script>
