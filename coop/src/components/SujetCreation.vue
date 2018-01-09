@@ -1,6 +1,6 @@
 <template>
 <div>
-  <!--<nav-bar/>-->
+  <nav-bar/>
 	<form @submit="creerSujet">
     <h1>Nouvelle conversation</h1>
 		<div>
@@ -20,36 +20,34 @@
 </template>
 
 <script>
-//import NavBar from '@/components/NavBar'
+  import NavBar from '@/components/NavBar'
 
-export default {
-  name: 'SujetCreation',
-  //components :{NavBar},
-  data () {
-    return {
-  		label :  '',
-      topic : ''
-    }
-	},
-	methods:{
-		creerSujet(){
-      window.axios.post('channels',{
-        params : {
+  export default {
+    name: 'SujetCreation',
+    components :{NavBar},
+    data () {
+      return {
+    		label :  '',
+        topic : ''
+      }
+  	},
+  	methods:{
+  		creerSujet(){
+        window.axios.post('channels',{
             label : this.label,
             topic : this.topic
-        }
-      }).then((response) => {
 
-        alert('Le sujet a été créé');
-        this.$router.push({path: '/ConversationsListe'});
+        }).then((response) => {
 
-      }).catch ((error) => {
-        console.log(error.response.data.join(""));
-      })
-		}
+          alert('Le sujet a été créé');
+          this.$router.push({path: '/ConversationsListe'});
+
+        }).catch ((error) => {
+          alert(error.response.data.error);
+        })
+  		}
+    }
   }
-}
-
 </script>
 
 

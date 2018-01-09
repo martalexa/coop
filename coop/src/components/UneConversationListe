@@ -1,0 +1,23 @@
+<template>
+  <div>
+    <p>Une conversation</p>
+    <p>Une conversation</p>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'UneConversationListe',
+    data () {
+      return {
+      }
+  	},
+  	methods:{
+
+    }
+  }
+</script>
+
+
+<style scoped>
+</style>

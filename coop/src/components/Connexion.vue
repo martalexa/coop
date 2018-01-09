@@ -38,13 +38,14 @@ export default {
 					this.$store.commit('setToken', response.data.token);
 
 					window.axios.defaults.params.token = response.data.token;
+
 					console.log(window.axios.defaults.params);
 
 					alert('Vous êtes connecté');
 					this.$router.push({path: '/conversationsListe'});
 
 				}).catch ((error) => {
-					console.log(error.response.data.error.join(""));
+					alert(error.response.data.error);
 				})
 			}
   	}

@@ -3,7 +3,7 @@
     <nav-bar/>
     <div>
       <p>Liste des conversations</p>
-      <button @click="creationSujet">Créer une conversation</button>
+      <button  @click="creationSujet">Créer une conversation</button>
     </div>
   </div>
 
@@ -22,9 +22,7 @@ export default {
 	methods:{
     creationSujet(){
       this.$router.push({path: '/SujetCreation'});
-
     }
-
   }
 }
 </script>

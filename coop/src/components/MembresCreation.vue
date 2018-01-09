@@ -12,7 +12,7 @@
 			<input type="password" v-model="password" placeholder="password"/>
 		</div>
 		<div>
-			<input type="submit" />
+			<input type="submit" value="Envoyer"/>
 			<router-link  to="/connexion">Vous connecter</router-link>
 		</div>
 	</form>
@@ -20,38 +20,36 @@
 </template>
 
 <script>
-import ConversationsListe from '@/components/ConversationsListe'
+	import ConversationsListe from '@/components/ConversationsListe'
 
-export default {
-  name: 'MembresCreation',
-  data () {
-    return {
-		fullname :  '',
-		password : '',
-		email : '' ,
-    }
-	},
-	methods:{
-		creerMembre(){
-			window.axios.post('members',{
-				fullname : this.fullname,
-				email : this.email,
-				password : this.password,
+	export default {
+	  name: 'MembresCreation',
+	  data () {
+	    return {
+				fullname :  '',
+				password : '',
+				email : '' ,
+	    }
+		},
+		methods:{
+			creerMembre(){
+				window.axios.post('members',{
+					fullname : this.fullname,
+					email : this.email,
+					password : this.password,
 
-			}).then((response) => {
+				}).then((response) => {
 
-				alert('Votre compte à été créé');
-				this.$router.push({path: '/Connexion'});
+					alert('Votre compte à été créé');
+					this.$router.push({path: '/Connexion'});
 
-			}).catch ((error) => {
-				console.log(error.response.data.join(""));
-			})
-		}
-  	}
-}
-
+				}).catch ((error) => {
+					alert(error.response.data.error);
+				})
+			}
+	  }
+	}
 </script>
-
 
 <style scoped>
 </style>
