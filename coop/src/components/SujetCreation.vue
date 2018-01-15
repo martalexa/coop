@@ -15,6 +15,7 @@
 			<input type="submit"/>
       <router-link to="/ConversationsListe">Retour</router-link>
 		</div>
+
 	</form>
 </div>
 </template>
@@ -35,7 +36,11 @@
   		creerSujet(){
         window.axios.post('channels',{
             label : this.label,
-            topic : this.topic
+            topic : this.topic,
+
+          params: {
+            token : this.$store.state.token
+          }
 
         }).then((response) => {
 

@@ -9,7 +9,7 @@ import axios from 'axios'
 window.axios = axios.create({
   baseURL: 'http://coop.api.netlor.fr/api/',
   params : {
-  	token : store.state.token
+  	token : false
   },
   headers: { Authorization: 'Token token=27ea72cecd104e96a5732d67151f836a' }
 });
