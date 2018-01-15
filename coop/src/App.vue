@@ -16,6 +16,7 @@ export default {
   	if( !this.$store.state.member ){  //Si pas connecté
 		  this.$router.push({path: '/connexion'});
 	   } else {
+     window.axios.defaults.params.token = this.$store.state.token;
      this.$router.push({path: '/conversationsListe'});
      }
      window.bus.$on('logout',() =>{

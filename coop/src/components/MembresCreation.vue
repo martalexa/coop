@@ -37,7 +37,6 @@
 					fullname : this.fullname,
 					email : this.email,
 					password : this.password,
-
 				}).then((response) => {
 
 					alert('Votre compte à été créé');
