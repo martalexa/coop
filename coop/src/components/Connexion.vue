@@ -1,19 +1,16 @@
 <template>
-	<form @submit="seConnecter">
+	<div class="container">
+		<h1>Log</h1>
+		<form @submit="log" class="col s6 offset-s3 m6 offset-m6 l3 offset-l6">
+				<input type="email" v-model="email" placeholder="email" class="validate" data-error="wrong" data-success="right"/>
 
-		<div>
-			<input type="email" v-model="email" placeholder="email"/>
-		</div>
+				<input  type="password" v-model="password" placeholder="password"/>
 
-		<div>
-			<input type="password" v-model="password" placeholder="password"/>
-		</div>
-		<div>
-			<input type="submit" />
-			<router-link to="/MembresCreation">Créer un compte</router-link>
-		</div>
-	</form>
+				<input type="submit" value="log" class="btn waves-effect waves-light"/>
 
+				<router-link to="/MembresCreation"><button type="button" class="btn waves-effect waves-light">Créer un compte</button></router-link>
+		</form>
+	</div>
 </template>
 
 
@@ -26,14 +23,15 @@ export default {
 		email : 'aa@aa.aa'
     }
   },
-	methods:{
+	methods: {
+		log () {
 
-		seConnecter(){
 				window.axios.post('members/signin',{
 					email : this.email,
 					password : this.password,
 
 				}).then((response) => {
+
 					this.$store.commit('setMember', response.data);
 					this.$store.commit('setToken', response.data.token);
 
@@ -48,9 +46,8 @@ export default {
 					alert(error.response.data.error);
 				})
 			}
-  	}
-}
-
+		}
+	}
 </script>
 
 

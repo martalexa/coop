@@ -1,23 +1,24 @@
 <template>
-<div>
-  <nav-bar/>
-	<form @submit="creerSujet">
+  <div class="container">
     <h1>Nouvelle conversation</h1>
-		<div>
-			<input type="text" v-model="label" placeholder="label"/>
-		</div>
+  	<form @submit="creerSujet" class="col s6 offset-s3 m6 offset-m6 l3 offset-l6">
+  		<div class="input-field">
+  			<input type="text" v-model="label" id="label"/>
+        <label for="label">label</label>
+  		</div>
 
-		<div>
-			<input type="text" v-model="topic" placeholder="topic"/>
-		</div>
+  		<div class="input-field">
+  			<input type="text" v-model="topic" id="topic"/>
+        <label for="topic">topic</label>
+  		</div>
 
-		<div>
-			<input type="submit"/>
-      <router-link to="/ConversationsListe">Retour</router-link>
-		</div>
+  		<div>
+        <button type="submit" class="btn waves-effect waves-light">submit</button>
+        <router-link to="/ConversationsListe">Retour</router-link>
+  		</div>
 
-	</form>
-</div>
+  	</form>
+  </div>
 </template>
 
 <script>

@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <nav-bar/>
+  <div class="container">
     <div>
-      <p>Liste des conversations</p>
-      <button  @click="creationSujet">Créer une conversation</button>
+      <h1>Liste des conversations <a class="btn-floating btn-large waves-effect waves-light red" @click="creationSujet" title="Créer une conversation"><i class="material-icons">add</i></a></h1>
     </div>
 
     <div>
-      <h2>Liste des conversations</h2>
-      <ul>
-        <li v-for="conversation in conversations">
+      <ul class="collection">
+        <li v-for="conversation in conversations" class="collection-item">
           <b> {{ conversation.label }} </b> {{ conversation.topic }}
-          <button @click="supprConv( conversation._id )"> Supprimer</button>
-          <router-link :to="{ name : 'ConversationModifier', params : { id:conversation._id}}">Modifier</router-link>
+          <a href="!#" class="secondary-content"><button  class="btn waves-effect waves-light" type="submit" name="action" @click="supprConv( conversation._id )">Supprimer <i class="material-icons right">delete</i></button>
+          <router-link :to="{ name : 'ConversationModifier', params : { id:conversation._id}}">Modifier</router-link></a>
+
         </li>
       </ul>
     </div>

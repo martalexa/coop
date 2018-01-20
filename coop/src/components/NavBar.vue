@@ -1,10 +1,8 @@
 <template>
-
   <div>
     <button @click="seDeconnecter">Se deconnecter</button>
     <hr/>
   </div>
-
 </template>
 
 <script>
@@ -12,6 +10,7 @@ export default {
   name: 'NavBar',
   data () {
     return {
+      
     }
 	},
 	methods:{

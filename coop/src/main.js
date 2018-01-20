@@ -6,6 +6,11 @@ import store from './store.js'
 import router from './router'
 import axios from 'axios'
 
+
+let Materialize = require('materialize-css');
+import 'materialize-css/dist/css/materialize.css'
+import 'materialize-css/dist/js/materialize.js'
+
 window.axios = axios.create({
   baseURL: 'http://coop.api.netlor.fr/api/',
   params : {

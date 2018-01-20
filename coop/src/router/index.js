@@ -7,11 +7,18 @@ import ConversationsListe from '@/components/ConversationsListe' // @ cherche à
 import SujetCreation from '@/components/SujetCreation' // @ cherche à partir de src
 import ConversationModifier from '@/components/ConversationModifier' // @ cherche à partir de src
 
+// charge le router dans vue
 Vue.use(Router)
 
+// initialisation du router
 export default new Router({
   routes: [
+      {
+        path: '/',
+          component: Connexion
+      },
     {
+
       path: '/navBar',
       component: NavBar
     },
@@ -35,6 +42,10 @@ export default new Router({
       name: 'ConversationModifier',
       path: '/ConversationModifier/:id',
       component: ConversationModifier
-    }
+    },
+      {
+        path: '*',
+        redirect: '/'
+      }
   ]
 })
