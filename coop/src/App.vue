@@ -1,28 +1,28 @@
 <template>
-    <section>
-      <nav>
-        <div class="nav-wrapper red lighten-1">
-        <router-link v-if="islog" to="/conversationsliste" class="brand-logo">Co'op</router-link>
-        <router-link v-else to="/connexion" class="brand-logo">Co'op</router-link>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
-                <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
-                <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
-                <li v-else><router-link to="/connexion">Se connecter</router-link></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-              <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
-              <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
-              <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
-              <li v-else><router-link to="/connexion">Se connecter</router-link></li>
-            </ul>
-        </div>
-      </nav>
-
-        <router-view></router-view>
-
-    </section>
+    <div>
+    <header>
+        <nav>
+            <div class="nav-wrapper red lighten-1">
+                <router-link v-if="islog" to="/conversationsliste" class="brand-logo">Co'op</router-link>
+                <router-link v-else to="/connexion" class="brand-logo">Co'op</router-link>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
+                    <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
+                    <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
+                    <li v-else><router-link to="/connexion">Se connecter</router-link></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
+                    <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
+                    <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
+                    <li v-else><router-link to="/connexion">Se connecter</router-link></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <router-view></router-view>
+    </div>
 </template>
 
 <script>
