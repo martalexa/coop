@@ -1,35 +1,50 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Connexion from '@/components/Connexion' // @ cherche à partir de src
-import membrescreation from '@/components/MembresCreation' // @ cherche à partir de src
-import ConversationsListe from '@/components/ConversationsListe' // @ cherche à partir de src
-import SujetCreation from '@/components/SujetCreation' // @ cherche à partir de src
-import ConversationModifier from '@/components/ConversationModifier' // @ cherche à partir de src
+import connexion from '@/components/connexion' // @ cherche à partir de src
+import membrescreation from '@/components/membrescreation' // @ cherche à partir de src
+import membres from '@/components/membres' // @ cherche à partir de src
+import conversationsliste from '@/components/conversationsliste' // @ cherche à partir de src
+import sujetcreation from '@/components/sujetcreation' // @ cherche à partir de src
+import conversationmodifier from '@/components/conversationmodifier' // @ cherche à partir de src
 
+// charge le router dans vue
 Vue.use(Router)
 
+// initialisation du router
 export default new Router({
   routes: [
     {
+      path: '/',
+      component: connexion
+    },
+    {
       path: '/connexion',
-      component: Connexion
+      component: connexion
     },
     {
       path: '/membrescreation',
       component: membrescreation
     },
     {
-      path: '/conversationsListe',
-      component: ConversationsListe
+      path: '/conversationsliste',
+      component: conversationsliste
     },
     {
-      path: '/SujetCreation',
-      component: SujetCreation
+      path: '/sujetcreation',
+      component: sujetcreation
     },
     {
-      name: 'ConversationModifier',
-      path: '/ConversationModifier/:id',
-      component: ConversationModifier
+      path: '/membres',
+      component: membres
+    },
+    {
+      name: 'conversationmodifier',
+      path: '/conversationmodifier/:id',
+      component: conversationmodifier
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })

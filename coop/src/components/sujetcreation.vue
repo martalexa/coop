@@ -1,0 +1,58 @@
+<template>
+  <div class="container">
+    <h1>Nouvelle conversation</h1>
+  	<form @submit="creerSujet" class="col s6 offset-s3 m6 offset-m6 l3 offset-l6">
+  		<div class="input-field">
+  			<input type="text" v-model="label" id="label"/>
+        <label for="label">label</label>
+  		</div>
+
+  		<div class="input-field">
+  			<input type="text" v-model="topic" id="topic"/>
+        <label for="topic">topic</label>
+  		</div>
+
+  		<div>
+        <button type="submit" class="btn waves-effect waves-light">submit</button>
+        <router-link to="/ConversationsListe">Retour</router-link>
+  		</div>
+
+  	</form>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'sujetcreation',
+    data () {
+      return {
+    		label :  '',
+        topic : ''
+      }
+  	},
+  	methods:{
+  		creerSujet(){
+        window.axios.post('channels',{
+            label : this.label,
+            topic : this.topic,
+
+          params: {
+            token : this.$store.state.token
+          }
+
+        }).then((response) => {
+
+          alert('Le sujet a été créé');
+          this.$router.push({path: '/conversationsliste'});
+
+        }).catch ((error) => {
+          alert(error.response.data.error);
+        })
+  		}
+    }
+  }
+</script>
+
+
+<style scoped>
+</style>
