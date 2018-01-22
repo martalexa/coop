@@ -8,8 +8,8 @@
       <ul class="collection">
         <li v-for="conversation in conversations" class="collection-item">
           <b> {{ conversation.label }} </b> {{ conversation.topic }}
-          <a href="!#" class="secondary-content"><button  class="btn waves-effect waves-light" type="submit" name="action" @click="supprConv( conversation._id )">Supprimer <i class="material-icons right">delete</i></button>
-          <router-link :to="{ name : 'ConversationModifier', params : { id:conversation._id}}">Modifier</router-link></a>
+          <a href="!#" class="secondary-content"><i class="material-icons right" @click="supprConv( conversation._id )">delete</i>
+          <router-link :to="{ name : 'ConversationModifier', params : { id:conversation._id}}"><i class="material-icons right">create</i></router-link></a>
 
         </li>
       </ul>
