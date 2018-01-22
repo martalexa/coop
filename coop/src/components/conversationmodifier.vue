@@ -12,8 +12,8 @@
 		</div>
 
 		<div>
-			<input type="submit">Modifier</input>
-      <router-link to="/ConversationsListe">Retour</router-link>
+			<input type="submit"></input>
+      <router-link to="/conversationsliste">Retour</router-link>
 		</div>
 
 	</form>
@@ -21,11 +21,8 @@
 </template>
 
 <script>
-  import NavBar from '@/components/NavBar'
-
   export default {
-    name: 'ConversationModifier',
-    components :{NavBar},
+    name: 'conversationmodifier',
     data () {
       return {
     		label :  '',
@@ -54,7 +51,7 @@
 				}).then((response) => {
 
             alert('La conversation a bien été modifiée');
-            this.$router.push({path: '/ConversationsListe'});
+            this.$router.push({path: '/conversationsliste'});
 
         }).catch ((error) => {
           console.log(this.$route.params);
@@ -65,7 +62,3 @@
     }
   }
 </script>
-
-
-<style scoped>
-</style>

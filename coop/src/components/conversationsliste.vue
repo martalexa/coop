@@ -9,8 +9,7 @@
         <li v-for="conversation in conversations" class="collection-item">
           <b><router-link :to="{ name : 'posts', params : { id : conversation._id} }">{{ conversation.label }}</router-link> </b> {{ conversation.topic }}
           <a href="!#" class="secondary-content"><i class="material-icons right" @click="supprConv( conversation._id )">delete</i>
-          <router-link :to="{ name : 'ConversationModifier', params : { id:conversation._id}}"><i class="material-icons right">create</i></router-link></a>
-
+          <router-link :to="{ name : 'conversationmodifier', params : { id:conversation._id}}"><i class="material-icons right">create</i></router-link></a>
         </li>
       </ul>
     </div>
@@ -18,12 +17,10 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
-import ConversationModifier from '@/components/ConversationModifier'
-
+import conversationmodifier from '@/components/conversationmodifier'
 export default {
-  name: 'ConversationsListe',
-  components :{NavBar,ConversationModifier},
+  name: 'conversationsliste',
+  components :{conversationmodifier},
   data () {
     return {
       conversations :[]
@@ -38,7 +35,7 @@ export default {
       })
     },
     creationSujet(){
-      this.$router.push({path: '/SujetCreation'});
+      this.$router.push({path: '/sujetcreation'});
     },
     supprConv(conversation_id){
        window.axios.delete('channels/'+conversation_id).then((response) =>{
@@ -51,6 +48,3 @@ export default {
  }
 }
 </script>
-
-<style scoped>
-</style>

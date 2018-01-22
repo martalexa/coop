@@ -14,7 +14,7 @@
 
   		<div>
         <button type="submit" class="btn waves-effect waves-light">submit</button>
-        <router-link to="/ConversationsListe">Retour</router-link>
+        <router-link to="/ConversationsListe"><button type="button" class="btn waves-effect waves-light">Retour</button></router-link>
   		</div>
 
   	</form>
@@ -22,11 +22,8 @@
 </template>
 
 <script>
-  import NavBar from '@/components/NavBar'
-
   export default {
-    name: 'SujetCreation',
-    components :{NavBar},
+    name: 'sujetcreation',
     data () {
       return {
     		label :  '',
@@ -46,7 +43,7 @@
         }).then((response) => {
 
           alert('Le sujet a été créé');
-          this.$router.push({path: '/ConversationsListe'});
+          this.$router.push({path: '/conversationsliste'});
 
         }).catch ((error) => {
           alert(error.response.data.error);
@@ -55,7 +52,3 @@
     }
   }
 </script>
-
-
-<style scoped>
-</style>

@@ -2,13 +2,20 @@
 	<div class="container">
 		<h1>Log</h1>
 		<form @submit="log" class="col s6 offset-s3 m6 offset-m6 l3 offset-l6">
+
+			<div class="input-field">
 				<input type="email" v-model="email" placeholder="email" class="validate" data-error="wrong" data-success="right"/>
+				<label for="fullname">fullname</label>
+			</div>
 
+			<div class="input-field">
 				<input  type="password" v-model="password" placeholder="password"/>
+				<label for="fullname">fullname</label>
+			</div>
 
-				<input type="submit" value="log" class="btn waves-effect waves-light"/>
+			<input type="submit" value="log" class="btn waves-effect waves-light"/>
 
-				<router-link to="/MembresCreation"><button type="button" class="btn waves-effect waves-light">Créer un compte</button></router-link>
+			<router-link to="/membrescreation"><button type="button" class="btn waves-effect waves-light">Créer un compte</button></router-link>
 		</form>
 	</div>
 </template>
@@ -16,16 +23,15 @@
 
 <script>
 export default {
-  name: 'Connexion',
+  name: 'connexion',
   data () {
     return {
-		password : 'aa',
-		email : 'aa@aa.aa'
+		password : '',
+		email : ''
     }
   },
 	methods: {
 		log () {
-
 				window.axios.post('members/signin',{
 					email : this.email,
 					password : this.password,
@@ -40,7 +46,7 @@ export default {
 					console.log(window.axios.defaults.params);
 
 					alert('Vous êtes connecté');
-					this.$router.push({path: '/conversationsListe'});
+					this.$router.push({path: '/conversationsliste'});
 
 				}).catch ((error) => {
 					alert(error.response.data.error);
@@ -49,7 +55,3 @@ export default {
 		}
 	}
 </script>
-
-
-<style scoped>
-</style>

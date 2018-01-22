@@ -1,22 +1,39 @@
 <template>
     <section>
-      <nav id="app" class="nav-wrapper">
-          <ul class="right hide-on-med-and-down">
-              <li v-if="islog" @click="logout"><router-link to="/Connexion">logout</router-link></li>
-              <li v-else><router-link to="/Connexion">log</router-link></li>
-          </ul>
+      <nav>
+        <div class="nav-wrapper red lighten-1">
+        <router-link v-if="islog" to="/conversationsliste" class="brand-logo">Co'op</router-link>
+        <router-link v-else to="/connexion" class="brand-logo">Co'op</router-link>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
+                <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
+                <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
+                <li v-else><router-link to="/connexion">Se connecter</router-link></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+              <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
+              <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
+              <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
+              <li v-else><router-link to="/connexion">Se connecter</router-link></li>
+            </ul>
+        </div>
       </nav>
+
         <router-view></router-view>
+
     </section>
 </template>
 
 <script>
-import MembresCreation from './components/MembresCreation.vue'
-import Connexion from './components/Connexion.vue'
+import conversationsliste from './components/conversationsliste.vue'
+import membres from './components/membres.vue'
+import membrescreation from './components/membrescreation.vue'
+import connexion from './components/connexion.vue'
 
 export default {
   name: 'app',
-  components : {MembresCreation, Connexion},
+  components : {conversationsliste, membres, membrescreation, connexion},
   computed: {
     islog () {
       return this.$store.state.member
@@ -31,12 +48,15 @@ export default {
   },
   mounted(){
 
+    $(".button-collapse").sideNav();  // menu burger responsive
+
   	if( !this.$store.state.member ){  //Si pas connecté
 		  this.$router.push({path: '/connexion'});
 		  this.connect = false
 	   } else {
      window.axios.defaults.params.token = this.$store.state.token;
-     this.$router.push({path: '/conversationsListe'});
+     // Si commente cette ligne, a chaque fois qu'on actualise, redirige sur conversationsliste
+     // this.$router.push({path: '/conversationsliste'});
      this.connect = true
      }
      window.bus.$on('logout',() => {
@@ -50,4 +70,5 @@ export default {
   }
 }
 </script>
-<style src="./assets/css/css.css"></style>
+<style src="./assets/css/css.css">
+</style>

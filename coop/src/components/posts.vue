@@ -37,7 +37,7 @@
             }
         },
         methods: {
-            // todo: Rajouter la methode qui récupere les membre qui sont associé au message 
+            // todo: Rajouter la methode qui récupere les membre qui sont associé au message
             loadPost () {
                 window.axios.get('channels/' + this.$route.params.id + '/posts').then((response) => {
                     this.posts = response.data;
