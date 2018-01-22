@@ -6,6 +6,8 @@ import membresCreation from '@/components/MembresCreation' // @ cherche à parti
 import ConversationsListe from '@/components/ConversationsListe' // @ cherche à partir de src
 import SujetCreation from '@/components/SujetCreation' // @ cherche à partir de src
 import ConversationModifier from '@/components/ConversationModifier' // @ cherche à partir de src
+import posts from '@/components/posts' // @ cherche à partir de src
+
 
 // charge le router dans vue
 Vue.use(Router)
@@ -46,6 +48,12 @@ export default new Router({
       {
         path: '*',
         redirect: '/'
+      },
+
+      {
+          name: 'posts',
+          path: '/api/channel/id/posts',
+          component: posts
       }
   ]
 })
