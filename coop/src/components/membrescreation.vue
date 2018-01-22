@@ -19,11 +19,11 @@
 
 			<div class="input-field">
 				<input type="password" v-model="passwordconfirm" placeholder="same password" id="passwordconfirm"/>
-				<label for="password">Same password</label>
+				<label for="passwordconfirm">Same password</label>
 			</div>
 
 			<button  v-if="issame" type="submit" class="btn waves-effect waves-light">Submit</button>
-			<span v-else type="submit">Les mots de passe ne sont pas identiques</span>
+			<span v-else type="submit" class="messMdp" >Pour vous inscrire, entrez des mots de passe similaires</span>
 			<router-link  to="/connexion"><button type="button" class="btn waves-effect waves-light">Vous connecter</button></router-link>
 		</form>
 	</div>
@@ -43,8 +43,8 @@
 	    }
 		},
 		computed: {
-	    issame () {
-				if (this.password === this.passwordconfirm){				// Quand les mdp sont les mêmes
+	    issame () { 	// Peut envoyer le formulaire quand les mdp sont les mêmes
+				if (this.password === this.passwordconfirm){
 					if(this.passwordconfirm.length !== 0){
 						return true;
 					}
@@ -57,11 +57,9 @@
 			creerMembre(){
 				window.axios.post('members',{
 					fullname : this.fullname,
-						email : this.email,
-						password : this.password,
-
+					email : this.email,
+					password : this.password,
 				}).then((response) => {
-
 					alert('Votre compte à été créé');
 					this.$router.push({path: '/connexion'});
 
@@ -74,4 +72,8 @@
 </script>
 
 <style scoped>
+.messMdp{
+	color: grey;
+	font-style : italic;
+}
 </style>

@@ -27,15 +27,16 @@ export default {
     chargement() {
       window.axios.get('members').then((response) => {
         this.membres = response.data;
-        console.log(this.membres);
+        console.log(this.$route.params.id);
       }).catch(function(err){
         console.log(err);
       })
+
     },
     supprMembres(membre_id){
-       window.axios.delete('members/'+ membre_id ).then((response) =>{
-          this.chargement();
-       })
+     window.axios.delete('members/'+ membre_id ).then((response) =>{
+        this.chargement();
+     })
     }
   },
   mounted() {
@@ -43,6 +44,3 @@ export default {
  }
 }
 </script>
-
-<style scoped>
-</style>

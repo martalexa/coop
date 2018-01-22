@@ -14,7 +14,7 @@
 
   		<div>
         <button type="submit" class="btn waves-effect waves-light">submit</button>
-        <router-link to="/ConversationsListe">Retour</router-link>
+        <router-link to="/ConversationsListe"><button type="button" class="btn waves-effect waves-light">Retour</button></router-link>
   		</div>
 
   	</form>
@@ -52,7 +52,3 @@
     }
   }
 </script>
-
-
-<style scoped>
-</style>
