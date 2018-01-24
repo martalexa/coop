@@ -7,7 +7,7 @@
     <div>
       <ul class="collection">
         <li v-for="conversation in conversations" class="collection-item">
-          <b> {{ conversation.label }} </b> {{ conversation.topic }}
+          <b><router-link :to="{ name : 'posts', params : { id : conversation._id} }">{{ conversation.label }}</router-link> </b> {{ conversation.topic }}
           <a href="!#" class="secondary-content"><i class="material-icons right" @click="supprConv( conversation._id )">delete</i>
           <router-link :to="{ name : 'conversationmodifier', params : { id:conversation._id}}"><i class="material-icons right">create</i></router-link></a>
         </li>
