@@ -79,11 +79,14 @@
                 })
             }
         },
-        mounted () {
+        created : function () {
             this.loadPost();
+        },
+        mounted () {
+
 
         },
-        updated(){
+        beforeUpdate () {
             let scroll = this.$el.querySelector('.chat');
             scroll.scrollTop = scroll.scrollHeight;
         }
