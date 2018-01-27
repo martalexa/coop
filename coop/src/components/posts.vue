@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row chat">
+        <div ref="chat" class="row chat">
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
                     <img src="https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle">
@@ -35,7 +35,8 @@
                 message: '',
                 posts : [],
                 members : [],
-                display : []
+                display : [],
+                test : []
             }
         },
         methods: {
@@ -43,9 +44,11 @@
             loadPost () {
 
                 window.axios.get('channels/' + this.$route.params.id + '/posts').then((response) => {
+
                     this.posts = response.data;
                     window.axios.get('members').then((response) => {
                         this.members = response.data;
+                        this.display = []
 
                         this.posts.forEach((post) => {
                             this.members.forEach((membre) => {
@@ -54,7 +57,6 @@
                                 }
                             })
                         })
-
                     }).catch(function(err){
                         console.log(err)
                     });
@@ -71,24 +73,22 @@
                         token : this.$store.state.token
                     }
                 }).then((response) => {
-
                     this.loadPost()
-
                 }).catch ((error) => {
                     alert(error.response.data.error);
                 })
+            },
+            scrollBottom () {
+                this.$nextTick(function(){
+                    this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight
+                })
             }
         },
-        created : function () {
-            this.loadPost();
+        created(){
+            this.loadPost()
         },
-        mounted () {
-
-
-        },
-        beforeUpdate () {
-            let scroll = this.$el.querySelector('.chat');
-            scroll.scrollTop = scroll.scrollHeight;
+        beforeUpdate(){
+            this.scrollBottom()
         }
     }
 </script>
