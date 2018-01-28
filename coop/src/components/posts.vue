@@ -7,9 +7,9 @@
                     <img src="https://www.gravatar.com/avatar/cc3040ff7d996bba598fa55105982e64?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
 
                     <span class="title">{{post.member.fullname}}
-                        <a href="!#" class="secondary-content">
+                        <a href="#" class="secondary-content">
                             <i class="material-icons right" @click="deletePost(post.post._id)">delete</i>
-                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p ref="edit" contenteditable="true" @keydown.enter.prevent="changePost(post.post._id,$event)">
+                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p ref="edit" v-bind:contenteditable="{editable}" @keydown.enter="blur($event)" @blur="changePost(post.post._id,post.post.message,myEvent,$event)">
                        {{post.post.message}}
                     </p>
                 </li>
@@ -38,10 +38,11 @@
             return {
                 message: '',
                 edit: '',
+                editable:true,
                 posts : [],
                 members : [],
                 display : [],
-                test : []
+                myEvent : {}
             }
         },
         methods: {
@@ -93,22 +94,29 @@
                     this.loadPost();
                 })
             },
-            changePost($postID,e){
-                this.edit.blur();
-                window.axios.put('channels/'+this.$route.params.id+'/posts/'+$postID,{
-                    message : this.e.target.textContent
-                }).then((response) => {
-                    console.log(this.edit)
-                }).catch ((error) => {
-                    console.log(this.$route.params);
-                    alert(error.response.data.error);
-                })
+            changePost($postID,message,e,trueEvent){
+
+                if(e.keyCode === 13){
+                    e.preventDefault();
+                    window.axios.put('channels/'+this.$route.params.id+'/posts/'+$postID,{
+                        message : e.target.textContent
+                    }).then((response) => {
+
+                    }).catch ((error) => {
+                        console.log(this.$route.params);
+                        alert(error.response.data.error);
+                    })
+                } else {
+                    trueEvent.target.textContent = message
+                }
+            },
+            blur(e){
+                this.myEvent = e
+                e.target.blur()
             },
             findEdit(e){
-
                 let target = e.target
                 while(target.parentNode.nodeName !== 'LI'){
-                    console.log(target)
                     target = target.parentNode
                 }
                 let edit = target.nextSibling
