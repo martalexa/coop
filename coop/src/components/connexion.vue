@@ -5,15 +5,15 @@
 
 			<div class="input-field">
 				<input type="email" v-model="email" placeholder="email" class="validate" data-error="wrong" data-success="right"/>
-				<label for="fullname">fullname</label>
+				<label for="email">email</label>
 			</div>
 
 			<div class="input-field">
 				<input  type="password" v-model="password" placeholder="password"/>
-				<label for="fullname">fullname</label>
+				<label for="password">password</label>
 			</div>
 
-			<input type="submit" value="log" class="btn waves-effect waves-light"/>
+			<input type="submit" value="se connecter" class="btn waves-effect waves-light"/>
 
 			<router-link to="/membrescreation"><button type="button" class="btn waves-effect waves-light">Créer un compte</button></router-link>
 		</form>

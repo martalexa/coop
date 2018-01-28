@@ -3,11 +3,13 @@
         <div ref="chat" class="row chat">
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
-                    <img src="https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle">
+
+                    <img src="https://www.gravatar.com/avatar/cc3040ff7d996bba598fa55105982e64?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
+
                     <span class="title">{{post.member.fullname}}
                         <a href="!#" class="secondary-content">
                             <i class="material-icons right" @click="deletePost(post.post._id)">delete</i>
-                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p ref="edit" contenteditable="true" @keydown.enter.prevent="changePost(post.post._id)" @focus="whoIs">
+                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p ref="edit" contenteditable="true" @keydown.enter.prevent="changePost(post.post._id,$event)">
                        {{post.post.message}}
                     </p>
                 </li>
@@ -91,19 +93,16 @@
                     this.loadPost();
                 })
             },
-            changePost($postID){
+            changePost($postID,e){
                 this.edit.blur();
                 window.axios.put('channels/'+this.$route.params.id+'/posts/'+$postID,{
-                    message : this.edit.textContent
+                    message : this.e.target.textContent
                 }).then((response) => {
                     console.log(this.edit)
                 }).catch ((error) => {
                     console.log(this.$route.params);
                     alert(error.response.data.error);
                 })
-            },
-            whoIs(){
-                this.edit = document.activeElement
             },
             findEdit(e){
 

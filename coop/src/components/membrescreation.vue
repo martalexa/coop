@@ -22,7 +22,7 @@
 				<label for="passwordconfirm">Same password</label>
 			</div>
 
-			<button  v-if="issame" type="submit" class="btn waves-effect waves-light">Submit</button>
+			<button v-if="issame" type="submit" class="btn waves-effect waves-light">Submit</button>
 			<span v-else type="submit" class="messMdp" >Pour vous inscrire, entrez des mots de passe similaires</span>
 			<router-link  to="/connexion"><button type="button" class="btn waves-effect waves-light">Vous connecter</button></router-link>
 		</form>
