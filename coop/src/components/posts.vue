@@ -3,11 +3,13 @@
         <div ref="chat" class="row chat">
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
-                    <img src="https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle">
-                    <span class="title">{{post.member.fullname}}</span>
-                    <p>
-                       {{post.post.message}}
-                    </p>
+                  <!-- Image modifiée pour la mise en place de Gravatar -->
+                  <!--  <img src="https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle">-->
+                  <img src="https://www.gravatar.com/avatar/cc3040ff7d996bba598fa55105982e64?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
+                  <span class="title">{{post.member.fullname}}</span>
+                  <p>
+                     {{post.post.message}}
+                  </p>
                 </li>
             </ul>
         </div>
