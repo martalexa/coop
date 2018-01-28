@@ -4,8 +4,10 @@
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
                     <img src="https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle">
-                    <span class="title">{{post.member.fullname}}</span>
-                    <p>
+                    <span class="title">{{post.member.fullname}}
+                        <a href="!#" class="secondary-content">
+                            <i class="material-icons right" @click="deletePost(post.post._id)">delete</i>
+                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p ref="edit" contenteditable="true" @keydown.enter.prevent="changePost(post.post._id)" @focus="whoIs">
                        {{post.post.message}}
                     </p>
                 </li>
@@ -33,6 +35,7 @@
         data () {
             return {
                 message: '',
+                edit: '',
                 posts : [],
                 members : [],
                 display : [],
@@ -82,6 +85,35 @@
                 this.$nextTick(function(){
                     this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight
                 })
+            },
+            deletePost($postID){
+                window.axios.delete('channels/'+this.$route.params.id+'/posts/'+$postID).then((response) => {
+                    this.loadPost();
+                })
+            },
+            changePost($postID){
+                this.edit.blur();
+                window.axios.put('channels/'+this.$route.params.id+'/posts/'+$postID,{
+                    message : this.edit.textContent
+                }).then((response) => {
+                    console.log(this.edit)
+                }).catch ((error) => {
+                    console.log(this.$route.params);
+                    alert(error.response.data.error);
+                })
+            },
+            whoIs(){
+                this.edit = document.activeElement
+            },
+            findEdit(e){
+
+                let target = e.target
+                while(target.parentNode.nodeName !== 'LI'){
+                    console.log(target)
+                    target = target.parentNode
+                }
+                let edit = target.nextSibling
+                edit.focus()
             }
         },
         created(){
