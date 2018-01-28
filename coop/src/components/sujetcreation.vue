@@ -4,12 +4,12 @@
   	<form @submit="creerSujet" class="col s6 offset-s3 m6 offset-m6 l3 offset-l6">
   		<div class="input-field">
   			<input type="text" v-model="label" id="label"/>
-        <label for="label">label</label>
+        <label for="label">Sujet</label>
   		</div>
 
   		<div class="input-field">
   			<input type="text" v-model="topic" id="topic"/>
-        <label for="topic">topic</label>
+        <label for="topic">Description</label>
   		</div>
 
   		<div>
