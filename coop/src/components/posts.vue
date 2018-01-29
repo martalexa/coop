@@ -60,17 +60,16 @@
                         this.posts.forEach((post) => {
                             this.members.forEach((membre) => {
                                 if(post.member_id === membre._id){
-                                    this.display.push({'post' : post, 'member' : membre})
+                                    this.display.push({'post' : post, 'member' : membre});
                                 }
                             })
                         })
                     }).catch(function(err){
-                        console.log(err)
+                        console.log(err);
                     });
                 }).catch(function(err){
-                    console.log(err)
+                    console.log(err);
                 });
-
 
             },
             createPost () {
@@ -80,14 +79,15 @@
                         token : this.$store.state.token
                     }
                 }).then((response) => {
-                    this.loadPost()
+                    this.loadPost();
+                    this.message = '';
                 }).catch ((error) => {
                     alert(error.response.data.error);
                 })
             },
             scrollBottom () {
                 this.$nextTick(function(){
-                    this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight
+                    this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
                 })
             },
             deletePost($postID){
@@ -102,26 +102,27 @@
                     window.axios.put('channels/'+this.$route.params.id+'/posts/'+$postID,{
                         message : e.target.textContent
                     }).then((response) => {
-
                     }).catch ((error) => {
                         console.log(this.$route.params);
                         alert(error.response.data.error);
                     })
                 } else {
-                    trueEvent.target.textContent = message
+                    trueEvent.target.textContent = message;
                 }
             },
             blur(e){
-                this.myEvent = e
-                e.target.blur()
+                this.myEvent = e;
+                e.target.blur();
             },
             findEdit(e){
-                let target = e.target
+                let target = e.target;
+
                 while(target.parentNode.nodeName !== 'LI'){
-                    target = target.parentNode
+                    target = target.parentNode;
                 }
-                let edit = target.nextSibling
-                edit.focus()
+
+                let edit = target.nextSibling;
+                edit.focus();
             },
             theUser (author,user) {
                 if(author === user){
@@ -135,10 +136,10 @@
             }
         },
         created(){
-            this.loadPost()
+            this.loadPost();
         },
         beforeUpdate(){
-            this.scrollBottom()
+            this.scrollBottom();
         }
     }
 </script>
