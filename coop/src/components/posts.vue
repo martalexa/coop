@@ -9,7 +9,7 @@
                     <span class="title">{{post.member.fullname}}
                         <a href="#" class="secondary-content" v-if="userID === post.member._id">
                             <i class="material-icons right" @click="deletePost(post.post._id)">delete</i>
-                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p :contenteditable="theUser(post.member._id, userID)" @keydown.enter="blur($event)" @blur="changePost(post.post._id,post.post.message,myEvent,$event)">
+                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p :contenteditable="theUser(post.member._id, userID)" @keydown.enter="blur($event)" @blur="changePost(post.post._id,post.post.message,myEvent,$event)" @click="helpEnter($event)">
                        {{post.post.message}}
                     </p>
                 </li>
@@ -45,6 +45,16 @@
                 display : [],
                 myEvent : {}
             }
+        },
+        mounted () {
+
+          window.setTimeout(() => {
+            let chat = document.querySelector('.chat');
+          this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight
+        },1000);
+
+          let help = "Cliquez sur le message pour le modifier";
+           window.setTimeout(Materialize.toast(help, 4000),2000);
         },
         methods: {
             // todo: Rajouter la methode qui récupere les membre qui sont associé au message
@@ -83,11 +93,6 @@
                     this.message = '';
                 }).catch ((error) => {
                     alert(error.response.data.error);
-                })
-            },
-            scrollBottom () {
-                this.$nextTick(function(){
-                    this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
                 })
             },
             deletePost($postID){
@@ -133,14 +138,25 @@
             },
             image (email) {
                 return this.avatarDefault(email);
+            },
+            helpEnter (e) {
+              let bool = e.target.contentEditable
+              if(bool === 'true') {
+                let help2 = "Appuyer sur entré pour sauvegarder la modification";
+                let ID = window.setTimeout(Materialize.toast(help2,4000),2500);
+              } else {
+                let f = "Impossible de modifier les messages qui ne sont pas les vôtres";
+                window.setTimeout(Materialize.toast(f,4000),2500);
+              }
+
             }
         },
         created(){
-            this.loadPost();
-        },
-        beforeUpdate(){
-            this.scrollBottom();
-        }
+            this.loadPost();}
+        // },
+        // beforeUpdate(){
+        //     this.scrollBottom();
+        // }
     }
 </script>
 
