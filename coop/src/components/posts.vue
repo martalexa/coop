@@ -4,7 +4,7 @@
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
 
-                    <img src="https://www.gravatar.com/avatar/cc3040ff7d996bba598fa55105982e64?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
+                    <img :src="image(post.member.email)" alt="logo" class="circle"/>
 
                     <span class="title">{{post.member.fullname}}
                         <a href="#" class="secondary-content" v-if="userID === post.member._id">
@@ -129,6 +129,9 @@
                 } else {
                     return false
                 }
+            },
+            image (email) {
+                return this.avatarDefault(email);
             }
         },
         created(){
