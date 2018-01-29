@@ -7,9 +7,9 @@
                     <img src="https://www.gravatar.com/avatar/cc3040ff7d996bba598fa55105982e64?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
 
                     <span class="title">{{post.member.fullname}}
-                        <a href="#" class="secondary-content">
+                        <a href="#" class="secondary-content" v-if="userID === post.member._id">
                             <i class="material-icons right" @click="deletePost(post.post._id)">delete</i>
-                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p ref="edit" v-bind:contenteditable="{editable}" @keydown.enter="blur($event)" @blur="changePost(post.post._id,post.post.message,myEvent,$event)">
+                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p :contenteditable="theUser(post.member._id, userID)" @keydown.enter="blur($event)" @blur="changePost(post.post._id,post.post.message,myEvent,$event)">
                        {{post.post.message}}
                     </p>
                 </li>
@@ -38,7 +38,8 @@
             return {
                 message: '',
                 edit: '',
-                editable:true,
+                userID:this.$store.state.member._id,
+                editable:false,
                 posts : [],
                 members : [],
                 display : [],
@@ -121,6 +122,13 @@
                 }
                 let edit = target.nextSibling
                 edit.focus()
+            },
+            theUser (author,user) {
+                if(author === user){
+                    return true
+                } else {
+                    return false
+                }
             }
         },
         created(){
