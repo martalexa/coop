@@ -36,7 +36,7 @@ export default {
   components : {conversationsliste, membres, membrescreation, connexion},
   computed: {
     islog () {
-      return this.$store.state.member
+      return this.$store.state.member;
     }
   },
   methods:{
@@ -56,7 +56,7 @@ export default {
 	   } else {
      window.axios.defaults.params.token = this.$store.state.token;
      // Si commente cette ligne, a chaque fois qu'on actualise, redirige sur conversationsliste
-     // this.$router.push({path: '/conversationsliste'});
+     this.$router.push({path: '/conversationsliste'});
      this.connect = true
      }
      window.bus.$on('logout',() => {
