@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
   <nav-bar/>
 	<form @submit="modifierSujet">
     <h1>Modifier la conversation</h1>
@@ -12,8 +12,8 @@
 		</div>
 
 		<div>
-			<input type="submit"></input>
-      <router-link to="/conversationsliste">Retour</router-link>
+			<input type="submit" value="modifier" class="btn waves-effect waves-light"/>
+            <router-link to="/conversationsliste"><button type="button" class="btn waves-effect waves-light">Annuler</button></router-link>
 		</div>
 
 	</form>

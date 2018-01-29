@@ -1,11 +1,15 @@
 <template>
     <div>
-        <div class="row chat">
+        <div ref="chat" class="row chat">
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
-                    <img src="https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle">
-                    <span class="title">{{post.member.fullname}}</span>
-                    <p>
+
+                    <img src="https://www.gravatar.com/avatar/cc3040ff7d996bba598fa55105982e64?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
+
+                    <span class="title">{{post.member.fullname}}
+                        <a href="#" class="secondary-content">
+                            <i class="material-icons right" @click="deletePost(post.post._id)">delete</i>
+                            <i class="material-icons right" @click="findEdit($event)">create</i></a></span><p ref="edit" v-bind:contenteditable="{editable}" @keydown.enter="blur($event)" @blur="changePost(post.post._id,post.post.message,myEvent,$event)">
                        {{post.post.message}}
                     </p>
                 </li>
@@ -33,9 +37,12 @@
         data () {
             return {
                 message: '',
+                edit: '',
+                editable:true,
                 posts : [],
                 members : [],
-                display : []
+                display : [],
+                myEvent : {}
             }
         },
         methods: {
@@ -43,9 +50,11 @@
             loadPost () {
 
                 window.axios.get('channels/' + this.$route.params.id + '/posts').then((response) => {
+
                     this.posts = response.data;
                     window.axios.get('members').then((response) => {
                         this.members = response.data;
+                        this.display = []
 
                         this.posts.forEach((post) => {
                             this.members.forEach((membre) => {
@@ -54,7 +63,6 @@
                                 }
                             })
                         })
-
                     }).catch(function(err){
                         console.log(err)
                     });
@@ -71,21 +79,55 @@
                         token : this.$store.state.token
                     }
                 }).then((response) => {
-
                     this.loadPost()
-
                 }).catch ((error) => {
                     alert(error.response.data.error);
                 })
+            },
+            scrollBottom () {
+                this.$nextTick(function(){
+                    this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight
+                })
+            },
+            deletePost($postID){
+                window.axios.delete('channels/'+this.$route.params.id+'/posts/'+$postID).then((response) => {
+                    this.loadPost();
+                })
+            },
+            changePost($postID,message,e,trueEvent){
+
+                if(e.keyCode === 13){
+                    e.preventDefault();
+                    window.axios.put('channels/'+this.$route.params.id+'/posts/'+$postID,{
+                        message : e.target.textContent
+                    }).then((response) => {
+
+                    }).catch ((error) => {
+                        console.log(this.$route.params);
+                        alert(error.response.data.error);
+                    })
+                } else {
+                    trueEvent.target.textContent = message
+                }
+            },
+            blur(e){
+                this.myEvent = e
+                e.target.blur()
+            },
+            findEdit(e){
+                let target = e.target
+                while(target.parentNode.nodeName !== 'LI'){
+                    target = target.parentNode
+                }
+                let edit = target.nextSibling
+                edit.focus()
             }
         },
-        mounted () {
-            this.loadPost();
-
+        created(){
+            this.loadPost()
         },
-        updated(){
-            let scroll = this.$el.querySelector('.chat');
-            scroll.scrollTop = scroll.scrollHeight;
+        beforeUpdate(){
+            this.scrollBottom()
         }
     }
 </script>
