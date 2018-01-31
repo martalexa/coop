@@ -25,3 +25,10 @@
 .nav-wrapper,.nav-content {
   padding-left:20px;
 }
+
+.profil{
+  width:30px;
+  position:relative;
+  top:10px;
+  margin-right : 20px;
+}

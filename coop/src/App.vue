@@ -9,7 +9,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
                     <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
-                    <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
+                    <li v-if="islog" @click="logout"><router-link to="/connexion">Se déconnecter</router-link></li>
                     <li v-else><router-link to="/connexion">Se connecter</router-link></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
@@ -21,7 +21,16 @@
             </div>
             <div class="nav-content">
                 <ul class="tabs tabs-transparent">
-                    <li class="tab">Bonjour {{fullname}}</li>
+
+                    <li v-if="islog" class="tab">
+                      <img :src="image(email)" alt="gravatar" class="circle profil"/>
+                      Bonjour {{fullname}}
+
+                    </li>
+
+                    <li v-else class="tab">
+                      Bienvenue
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -45,6 +54,9 @@ export default {
     },
       fullname () {
         return this.$store.state.member.fullname
+      },
+      email () {
+        return this.$store.state.member.email
       }
   },
   methods:{
@@ -52,6 +64,9 @@ export default {
       // On fait un emit car c'est une fonction qu'on aura besoin un peu partout
       // window.bus instancier dans main
       window.bus.$emit('logout')
+    },
+    image (email) {
+        return this.avatarDefault(email);
     }
   },
     mounted(){

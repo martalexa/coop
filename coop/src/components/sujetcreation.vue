@@ -13,7 +13,7 @@
   		</div>
 
   		<div>
-        <button type="submit" class="btn waves-effect waves-light">submit</button>
+        <button type="submit" class="btn waves-effect waves-light">Ajouter</button>
         <router-link to="/ConversationsListe"><button type="button" class="btn waves-effect waves-light">Retour</button></router-link>
   		</div>
 
