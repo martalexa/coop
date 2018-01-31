@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f7e12bc-788e-48c4-8f77-e441247faf51" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/coop/index.html" afterPath="$PROJECT_DIR$/coop/index.html" />
+      <change beforePath="$PROJECT_DIR$/coop/package.json" afterPath="$PROJECT_DIR$/coop/package.json" />
       <change beforePath="$PROJECT_DIR$/coop/src/App.vue" afterPath="$PROJECT_DIR$/coop/src/App.vue" />
+      <change beforePath="$PROJECT_DIR$/coop/src/assets/css/css.css" afterPath="$PROJECT_DIR$/coop/src/assets/css/css.css" />
+      <change beforePath="$PROJECT_DIR$/coop/src/components/connexion.vue" afterPath="$PROJECT_DIR$/coop/src/components/connexion.vue" />
+      <change beforePath="$PROJECT_DIR$/coop/src/components/conversationsliste.vue" afterPath="$PROJECT_DIR$/coop/src/components/conversationsliste.vue" />
+      <change beforePath="$PROJECT_DIR$/coop/src/components/membres.vue" afterPath="$PROJECT_DIR$/coop/src/components/membres.vue" />
+      <change beforePath="$PROJECT_DIR$/coop/src/components/membrescreation.vue" afterPath="$PROJECT_DIR$/coop/src/components/membrescreation.vue" />
       <change beforePath="$PROJECT_DIR$/coop/src/components/posts.vue" afterPath="$PROJECT_DIR$/coop/src/components/posts.vue" />
+      <change beforePath="$PROJECT_DIR$/coop/src/components/sujetcreation.vue" afterPath="$PROJECT_DIR$/coop/src/components/sujetcreation.vue" />
+      <change beforePath="$PROJECT_DIR$/coop/webpack.config.js" afterPath="$PROJECT_DIR$/coop/webpack.config.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,14 +53,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coop/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="920">
-              <caret line="78" column="5" lean-forward="false" selection-start-line="78" selection-start-column="5" selection-end-line="85" selection-end-column="6" />
-              <folding>
-                <element signature="e#1793#1861#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1334">
+              <caret line="61" column="8" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,14 +86,14 @@
       <file leaf-file-name="posts.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coop/src/components/posts.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
-              <caret line="60" column="31" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+            <state relative-caret-position="1357">
+              <caret line="59" column="31" lean-forward="false" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conversationsliste.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="conversationsliste.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coop/src/components/conversationsliste.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -125,8 +131,8 @@
         <option value="$PROJECT_DIR$/coop/index.html" />
         <option value="$PROJECT_DIR$/coop/src/main.js" />
         <option value="$PROJECT_DIR$/coop/src/assets/css/css.css" />
-        <option value="$PROJECT_DIR$/coop/src/App.vue" />
         <option value="$PROJECT_DIR$/coop/src/components/posts.vue" />
+        <option value="$PROJECT_DIR$/coop/src/App.vue" />
       </list>
     </option>
   </component>
@@ -268,12 +274,12 @@
       <workItem from="1517231849156" duration="9291000" />
       <workItem from="1517244817694" duration="4129000" />
       <workItem from="1517306519395" duration="541000" />
-      <workItem from="1517388772331" duration="9073000" />
+      <workItem from="1517388772331" duration="9302000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84901000" />
+    <option name="totallyTimeSpent" value="85130000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="275" y="5" width="1303" height="780" extended-state="6" />
@@ -316,9 +322,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding>
-            <element signature="e#1793#1861#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -373,9 +377,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding>
-            <element signature="e#1793#1861#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -414,9 +416,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding>
-            <element signature="e#1793#1861#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -439,9 +439,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#1793#1861#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -503,9 +501,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#1793#1861#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -574,20 +570,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coop/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
-          <caret line="78" column="5" lean-forward="false" selection-start-line="78" selection-start-column="5" selection-end-line="85" selection-end-column="6" />
-          <folding>
-            <element signature="e#1793#1861#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/coop/src/components/posts.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="60" column="31" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+        <state relative-caret-position="1357">
+          <caret line="59" column="31" lean-forward="false" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -596,6 +582,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coop/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1334">
+          <caret line="61" column="8" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
           <folding />
         </state>
       </provider>

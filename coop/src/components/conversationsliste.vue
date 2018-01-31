@@ -6,12 +6,22 @@
 
     <div>
       <ul class="collection">
-        <li v-for="conversation in conversations" class="collection-item">
-          <b><router-link :to="{ name : 'posts', params : { id : conversation._id} }">{{ conversation.label }}</router-link> </b> {{ conversation.topic }}
-          <a href="!#" class="secondary-content"><i class="material-icons right" @click="supprConv( conversation._id )">delete</i>
-          <router-link :to="{ name : 'conversationmodifier', params : { id:conversation._id}}"><i class="material-icons right">create</i></router-link></a>
-        </li>
+        <div v-for="conversation in conversations">
+
+          <router-link :to="{ name : 'posts', params : { id : conversation._id} }" class="conversation">
+            <li class="collection-item conv">
+              <b>{{ conversation.label }}</b>
+              <span class="detail">{{ conversation.topic }}</span>
+              <a class="secondary-content">
+                <router-link to="/conversationsliste"><i class="material-icons right delete" @click="supprConv( conversation._id )">delete</i></router-link>
+                <router-link :to="{ name : 'conversationmodifier', params : { id:conversation._id}}"><i class="material-icons right create">create</i></router-link>
+              </a>
+            </li>
+          </router-link>
+
+        </div>
       </ul>
+
     </div>
   </div>
 </template>
@@ -48,3 +58,28 @@ export default {
  }
 }
 </script>
+
+<style scoped>
+  .conversation{
+    color: black;
+    font-size:12pt;
+  }
+  .detail{
+    color: grey;
+  }
+  .collection-item:hover{
+    background-color:#ef9a9a;
+  }
+  li{
+    border:1px solid #e0e0e0;
+  }
+  .delete{
+    color:#ef4450;
+  }
+  .create{
+    color:#26a69a;
+  }
+  .conv{
+    height:43px;
+  }
+  </style>

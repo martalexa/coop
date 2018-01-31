@@ -3,9 +3,7 @@
         <div ref="chat" class="row chat">
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
-
-                    <img :src="image(post.member.email)" alt="logo" class="circle"/>
-
+                    <img :src="image(post.member.email)" alt="gravatar" class="circle"/>
                     <span class="title">{{post.member.fullname}}
                         <a href="#" class="secondary-content" v-if="userID === post.member._id">
                             <i class="material-icons right" @click="deletePost(post.post._id)">delete</i>
@@ -18,11 +16,11 @@
         <footer class="row mypost valign-wrapper">
             <form action="#">
                 <div class="row valign-wrapper">
-                    <div class="input-field col s10">
+                    <div class="input-field col l9 s10 ">
                         <textarea id="textarea1" class="materialize-textarea" v-model="message"></textarea>
-                        <label for="textarea1">Textarea</label>
+                        <label for="textarea1">Message</label>
                     </div>
-                    <div class="col s2">
+                    <div class="col m2 s5">
                         <a class="waves-effect waves-light btn" @click="createPost"><i class="material-icons left">send</i>send</a>
                     </div>
                 </div>
@@ -48,6 +46,7 @@
                 load : this.testMessage
             }
         },
+
         mounted () {
 
           window.setTimeout(() => {
@@ -63,7 +62,7 @@
 
         },
         methods: {
-            // todo: Rajouter la methode qui récupere les membre qui sont associé au message
+          // todo: Rajouter la methode qui récupere les membre qui sont associé au message
             loadPost () {
 
                 window.axios.get('channels/' + this.$route.params.id + '/posts').then((response) => {
@@ -175,6 +174,7 @@
     .mypost textarea {
         margin:0;
         padding: 0;
+        width:100%;
     }
     div .input-field{
         margin: 0;
@@ -185,7 +185,6 @@
     .row{
         margin-bottom: 0;
     }
-
     .chat {
         height: 60vh;
         overflow-y: scroll;

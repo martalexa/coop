@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<h1>Create account</h1>
+		<h1>Creation d'un compte</h1>
 		<form @submit="creerMembre" class="col s6 offset-s3 m6 offset-m6 l3 offset-l6">
 			<div class="input-field">
 				<input type="text" v-model="fullname" placeholder="fullname" id="fullname" class="validate"/>
@@ -22,9 +22,9 @@
 				<label for="passwordconfirm">Same password</label>
 			</div>
 
-			<button v-if="issame" type="submit" class="btn waves-effect waves-light">Submit</button>
-			<span v-else type="submit" class="messMdp" >Pour vous inscrire, entrez des mots de passe similaires</span>
-			<router-link  to="/connexion"><button type="button" class="btn waves-effect waves-light">Vous connecter</button></router-link>
+			<button v-if="issame" type="submit" class="btn waves-effect waves-light">Créer</button>
+			<button v-else type="submit" class="btn waves-effect waves-light disabled">Créer</button>
+			<router-link to="/connexion"><button type="button" class="btn waves-effect waves-light">Vous connecter</button></router-link>
 		</form>
 	</div>
 </template>
@@ -52,7 +52,7 @@
 					return false;
 				}
 	    }
-	  },
+		},
 		methods:{
 			creerMembre(){
 				window.axios.post('members',{

@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<h1>Log</h1>
+		<h1>Se connecter</h1>
 		<form @submit="log" class="col s6 offset-s3 m6 offset-m6 l3 offset-l6">
 
 			<div class="input-field">

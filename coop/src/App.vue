@@ -9,7 +9,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li v-if="islog"><router-link to="/conversationsliste">Conversations</router-link></li>
                     <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
-                    <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
+                    <li v-if="islog" @click="logout"><router-link to="/connexion">Se déconnecter</router-link></li>
                     <li v-else><router-link to="/connexion">Se connecter</router-link></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
@@ -21,8 +21,17 @@
             </div>
             <div class="nav-content">
                 <ul class="tabs tabs-transparent valign-wrapper">
-                    <li class="tab">Bonjour {{fullname}}</li>
-                    <a class="right" v-show="boolReload" @click="load">reload</a>
+
+                    <li v-if="islog" class="tab">
+                      <img :src="image(email)" alt="gravatar" class="circle profil"/>
+                      Bonjour {{fullname}}
+                        <a class="right" v-show="boolReload" @click="load">reload</a>
+
+                    </li>
+
+                    <li v-else class="tab">
+                      Bienvenue
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -47,8 +56,13 @@ export default {
       fullname () {
         return this.$store.state.member.fullname
       },
+
       boolReload () {
-        return this.$route.name === "posts" ? true : false
+          return this.$route.name === "posts" ? true : false
+      },
+      email () {
+        return this.$store.state.member.email
+
       }
   },
   methods:{
@@ -57,7 +71,10 @@ export default {
     },
       load(){
         window.bus.$emit('loadPost')
-      }
+      },
+    image (email) {
+        return this.avatarDefault(email);
+    }
   },
     mounted(){
 
