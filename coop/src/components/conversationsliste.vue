@@ -21,65 +21,85 @@
 
         </div>
       </ul>
-
     </div>
+
   </div>
 </template>
 
 <script>
 import conversationmodifier from '@/components/conversationmodifier'
 export default {
+
   name: 'conversationsliste',
+
   components :{conversationmodifier},
+
   data () {
     return {
       conversations :[]
     }
 	},
+
+  mounted() {
+    this.chargement();
+  },
+
 	methods:{
     chargement() {
       window.axios.get('channels').then((response) => {
+
         this.conversations = response.data;
-      }).catch(function(err){
-        console.log(err)
+
       })
     },
+
     creationSujet(){
+
       this.$router.push({path: '/sujetcreation'});
+
     },
+
     supprConv(conversation_id){
        window.axios.delete('channels/'+conversation_id).then((response) =>{
+
           this.chargement();
+
        })
     }
-  },
-  mounted() {
-    this.chargement();
- }
+  }
+
 }
 </script>
 
 <style scoped>
+
   .conversation{
     color: black;
     font-size:12pt;
   }
+
   .detail{
     color: grey;
   }
+
   .collection-item:hover{
     background-color:#ef9a9a;
   }
+
   li{
     border:1px solid #e0e0e0;
   }
+
   .delete{
     color:#ef4450;
   }
+
   .create{
     color:#26a69a;
   }
+
   .conv{
     height:43px;
   }
+  
   </style>

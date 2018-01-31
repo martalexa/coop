@@ -23,13 +23,16 @@
 
 <script>
   export default {
+
     name: 'sujetcreation',
+
     data () {
       return {
     		label :  '',
         topic : ''
       }
   	},
+    
   	methods:{
   		creerSujet(){
         window.axios.post('channels',{

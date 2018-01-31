@@ -33,7 +33,9 @@
 	import conversationsliste from '@/components/conversationsliste'
 
 	export default {
+
 	  name: 'membrescreation',
+
 	  data () {
 	    return {
 				fullname :  '',
@@ -42,29 +44,42 @@
 				email : '' ,
 	    }
 		},
+
 		computed: {
-	    issame () { 	// Peut envoyer le formulaire quand les mdp sont les mêmes
+			// Peut envoyer le formulaire quand les mdp sont les mêmes
+	    issame () {
 				if (this.password === this.passwordconfirm){
+
 					if(this.passwordconfirm.length !== 0){
+
 						return true;
+
 					}
 				}else{
+
 					return false;
+
 				}
 	    }
 		},
+
 		methods:{
 			creerMembre(){
 				window.axios.post('members',{
+
 					fullname : this.fullname,
 					email : this.email,
 					password : this.password,
+
 				}).then((response) => {
+
 					alert('Votre compte à été créé');
 					this.$router.push({path: '/connexion'});
 
 				}).catch ((error) => {
+
 					alert(error.response.data.error);
+
 				})
 			}
 	  }

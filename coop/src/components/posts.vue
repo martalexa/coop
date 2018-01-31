@@ -2,6 +2,7 @@
     <div>
         <div ref="chat" class="row chat">
             <ul class="collection">
+
                 <li class="collection-item avatar" v-for="post in display">
                     <img :src="image(post.member.email)" alt="gravatar" class="circle"/>
                     <span class="title">{{post.member.fullname}}
@@ -11,9 +12,12 @@
                        {{post.post.message}}
                     </p>
                 </li>
+
             </ul>
         </div>
+
         <div class="row mypost valign-wrapper">
+
             <form action="#">
                 <div class="row valign-wrapper">
                     <div class="input-field col l9 s10 ">
@@ -25,19 +29,22 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
 </template>
 
 <script>
     export default {
+
         name: "posts",
+
         data () {
             return {
                 message: '',
                 edit: '',
-                userID:this.$store.state.member._id,
-                editable:false,
+                userID : this.$store.state.member._id,
+                editable : false,
                 posts : [],
                 members : [],
                 display : [],
@@ -46,33 +53,42 @@
         },
 
         mounted () {
-
           window.setTimeout(() => {
-            let chat = document.querySelector('.chat');
-          this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight
-        },1000);
 
-          let help = "Cliquez sur le message pour le modifier";
-           window.setTimeout(Materialize.toast(help, 4000),2000);
+            let chat = document.querySelector('.chat');
+            this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
+
+          },1000);
+
+            let help = "Cliquez sur le message pour le modifier";
+            window.setTimeout(Materialize.toast(help, 4000),2000);
+
         },
+
         methods: {
-          // todo: Rajouter la methode qui récupere les membre qui sont associé au message
             loadPost () {
 
                 window.axios.get('channels/' + this.$route.params.id + '/posts').then((response) => {
 
                     this.posts = response.data;
                     window.axios.get('members').then((response) => {
+
                         this.members = response.data;
                         this.display = []
 
                         this.posts.forEach((post) => {
+
                             this.members.forEach((membre) => {
+
                                 if(post.member_id === membre._id){
+
                                     this.display.push({'post' : post, 'member' : membre});
                                 }
+
                             })
+
                         })
+
                     }).catch(function(err){
                         console.log(err);
                     });
@@ -82,74 +98,107 @@
 
             },
             createPost () {
+
                 window.axios.post('channels/' + this.$route.params.id + '/posts',{
+
                     message: this.message,
                     params : {
                         token : this.$store.state.token
                     }
+
                 }).then((response) => {
+
                     this.loadPost();
                     this.message = '';
+
                 }).catch ((error) => {
+
                     alert(error.response.data.error);
+
                 })
             },
+
             deletePost($postID){
                 window.axios.delete('channels/'+this.$route.params.id+'/posts/'+$postID).then((response) => {
+
                     this.loadPost();
+
                 })
             },
-            changePost($postID,message,e,trueEvent){
 
+            changePost($postID,message,e,trueEvent){
                 if(e.keyCode === 13){
+
                     e.preventDefault();
+
                     window.axios.put('channels/'+this.$route.params.id+'/posts/'+$postID,{
+
                         message : e.target.textContent
+
                     }).then((response) => {
+
                     }).catch ((error) => {
-                        console.log(this.$route.params);
+
                         alert(error.response.data.error);
+
                     })
                 } else {
+
                     trueEvent.target.textContent = message;
+
                 }
             },
+
             blur(e){
+
                 this.myEvent = e;
                 e.target.blur();
+
             },
+
             findEdit(e){
                 let target = e.target;
 
                 while(target.parentNode.nodeName !== 'LI'){
-                    target = target.parentNode;
-                }
 
+                    target = target.parentNode;
+
+                }
                 let edit = target.nextSibling;
                 edit.focus();
+
             },
+
             theUser (author,user) {
+
                 if(author === user){
-                    return true
+                    return true;
                 } else {
-                    return false
+                    return false;
                 }
             },
+
             image (email) {
                 return this.avatarDefault(email);
             },
+
             helpEnter (e) {
-              let bool = e.target.contentEditable
+              let bool = e.target.contentEditable;
+
               if(bool === 'true') {
+
                 let help2 = "Appuyer sur entré pour sauvegarder la modification";
                 let ID = window.setTimeout(Materialize.toast(help2,4000),2500);
+
               } else {
+
                 let f = "Impossible de modifier les messages qui ne sont pas les vôtres";
                 window.setTimeout(Materialize.toast(f,4000),2500);
-              }
 
+              }
             }
         },
+
         created(){
             this.loadPost();}
         // },
@@ -166,23 +215,29 @@
         background-color: lightblue;
         min-height: 20vh;
     }
+
     .mypost form{
         width: 100%;
     }
+
     .mypost textarea {
         margin:0;
         padding: 0;
         width:100%;
     }
+
     div .input-field{
         margin: 0;
     }
+
     ul.collection{
         margin: 0;
     }
+
     .row{
         margin-bottom: 0;
     }
+
     .chat {
         height: 70vh;
         overflow-y: scroll;
