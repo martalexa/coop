@@ -1,7 +1,7 @@
 <template>
     <div>
     <header>
-        <nav>
+        <nav class="nav-extended">
             <div class="nav-wrapper red lighten-1">
                 <router-link v-if="islog" to="/conversationsliste" class="brand-logo">Co'op</router-link>
                 <router-link v-else to="/connexion" class="brand-logo">Co'op</router-link>
@@ -17,6 +17,11 @@
                     <li v-if="islog"><router-link to="/membres">Membres</router-link></li>
                     <li v-if="islog" @click="logout"><router-link to="/connexion">Logout</router-link></li>
                     <li v-else><router-link to="/connexion">Se connecter</router-link></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab">Bonjour {{fullname}}</li>
                 </ul>
             </div>
         </nav>
@@ -37,7 +42,10 @@ export default {
   computed: {
     islog () {
       return this.$store.state.member;
-    }
+    },
+      fullname () {
+        return this.$store.state.member.fullname
+      }
   },
   methods:{
     logout(){
@@ -46,10 +54,11 @@ export default {
       window.bus.$emit('logout')
     }
   },
-  mounted(){
+    mounted(){
 
-    $(".button-collapse").sideNav();  // menu burger responsive
-
+        $( document ).ready(function() {
+            $(".button-collapse").sideNav();  // menu burger responsive
+        })
   	if( !this.$store.state.member ){  //Si pas connecté
 		  this.$router.push({path: '/connexion'});
 		  this.connect = false
