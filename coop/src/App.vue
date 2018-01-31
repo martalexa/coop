@@ -20,8 +20,9 @@
                 </ul>
             </div>
             <div class="nav-content">
-                <ul class="tabs tabs-transparent">
+                <ul class="tabs tabs-transparent valign-wrapper">
                     <li class="tab">Bonjour {{fullname}}</li>
+                    <a class="right" v-show="boolReload" @click="load">reload</a>
                 </ul>
             </div>
         </nav>
@@ -45,20 +46,25 @@ export default {
     },
       fullname () {
         return this.$store.state.member.fullname
+      },
+      boolReload () {
+        return this.$route.name === "posts" ? true : false
       }
   },
   methods:{
     logout(){
-      // On fait un emit car c'est une fonction qu'on aura besoin un peu partout
-      // window.bus instancier dans main
       window.bus.$emit('logout')
-    }
+    },
+      load(){
+        window.bus.$emit('loadPost')
+      }
   },
     mounted(){
 
         $( document ).ready(function() {
             $(".button-collapse").sideNav();  // menu burger responsive
         })
+
   	if( !this.$store.state.member ){  //Si pas connecté
 		  this.$router.push({path: '/connexion'});
 		  this.connect = false
@@ -68,6 +74,8 @@ export default {
      this.$router.push({path: '/conversationsliste'});
      this.connect = true
      }
+
+
      window.bus.$on('logout',() => {
 
       window.axios.delete('members/signout'),
@@ -76,7 +84,7 @@ export default {
       this.$router.push({path: '/connexion'});
       this.connect = false
     })
-  }
+    }
 }
 </script>
 <style src="./assets/css/css.css">
