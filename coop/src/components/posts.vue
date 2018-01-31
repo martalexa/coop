@@ -4,7 +4,7 @@
             <ul class="collection">
                 <li class="collection-item avatar" v-for="post in display">
 
-                    <img src="https://www.gravatar.com/avatar/cc3040ff7d996bba598fa55105982e64?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
+                    <img src="https://www.gravatar.com/avatar/+this.MD5(email)+?d=https://1.bp.blogspot.com/-iQmayUWj2xE/Vjd6eV-c4YI/AAAAAAAAPA0/RMUUNnPslsk/s1600/slack.png" alt="logo" class="circle"/>
 
                     <span class="title">{{post.member.fullname}}
                         <a href="#" class="secondary-content" v-if="userID === post.member._id">
@@ -46,8 +46,12 @@
                 myEvent : {}
             }
         },
+        mounted(){
+          var hash = functionmd5("value");
+
+        },
         methods: {
-            // todo: Rajouter la methode qui récupere les membre qui sont associé au message
+          // todo: Rajouter la methode qui récupere les membre qui sont associé au message
             loadPost () {
 
                 window.axios.get('channels/' + this.$route.params.id + '/posts').then((response) => {
