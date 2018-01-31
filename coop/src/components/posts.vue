@@ -16,8 +16,7 @@
             </ul>
         </div>
 
-        <div class="row mypost valign-wrapper">
-
+        <footer class="row mypost valign-wrapper">
             <form action="#">
                 <div class="row valign-wrapper">
                     <div class="input-field col l9 s10 ">
@@ -29,8 +28,8 @@
                     </div>
                 </div>
             </form>
+        </footer>
 
-        </div>
     </div>
 </template>
 
@@ -39,6 +38,7 @@
 
         name: "posts",
 
+        props:['testMessage'],
         data () {
             return {
                 message: '',
@@ -48,21 +48,23 @@
                 posts : [],
                 members : [],
                 display : [],
-                myEvent : {}
+                myEvent : {},
+                load : this.testMessage
             }
         },
 
         mounted () {
           window.setTimeout(() => {
 
-            let chat = document.querySelector('.chat');
-            this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
+          this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
+        },300);
 
-          },1000);
+          let help = "Cliquez sur le message pour le modifier";
+           window.setTimeout(Materialize.toast(help, 4000),2000);
 
-            let help = "Cliquez sur le message pour le modifier";
-            window.setTimeout(Materialize.toast(help, 4000),2000);
-
+            window.bus.$on('loadPost',() => {
+                this.loadPost();
+            })
         },
 
         methods: {
@@ -200,11 +202,8 @@
         },
 
         created(){
-            this.loadPost();}
-        // },
-        // beforeUpdate(){
-        //     this.scrollBottom();
-        // }
+            this.loadPost();
+        }
     }
 </script>
 
@@ -239,7 +238,7 @@
     }
 
     .chat {
-        height: 70vh;
+        height: 60vh;
         overflow-y: scroll;
     }
 </style>
